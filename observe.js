@@ -1,11 +1,3 @@
-/*
- * @Author: TinyChen 2454046178@qq.com
- * @Date: 2023-11-09 16:00:18
- * @LastEditors: TinyChen 2454046178@qq.com
- * @LastEditTime: 2023-11-09 16:45:56
- * @FilePath: \testIndex\observe.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 /**
  * 观察者模式
  * 角色： 观察者：n 目标对象：1
@@ -19,7 +11,7 @@ class Observer {
         this.name = name;
     }
     // 获取目标对象的信息
-    update({type, info}) {
+    update({ type, info }) {
         console.log(type, info);
         this.go(info);
     }

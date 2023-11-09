@@ -1,11 +1,3 @@
-/*
- * @Author: TinyChen 2454046178@qq.com
- * @Date: 2023-11-09 16:14:17
- * @LastEditors: TinyChen 2454046178@qq.com
- * @LastEditTime: 2023-11-09 16:40:54
- * @FilePath: \testIndex\subscribe.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 /**
  * 发布订阅者模式
  * 角色： 发布者 事件中心 订阅者
@@ -22,17 +14,17 @@ class Subscribe {
     // 订阅方法
     on(type, fn) {
         // 如果这个事件中心不存在，那就新增这个事件中心
-        if(!this.subscribeCenter.has(type)) {
+        if (!this.subscribeCenter.has(type)) {
             this.subscribeCenter.set(type, []);
         }
         // 防止重复订阅
-        if(!this.subscribeCenter.get(type).find(itemFn => itemFn === fn)) {
+        if (!this.subscribeCenter.get(type).find(itemFn => itemFn === fn)) {
             this.subscribeCenter.get(type).push(fn);
         }
     }
     // 发布
-    publish(type,data) {
-        if(this.subscribeCenter.has(type)) {
+    publish(type, data) {
+        if (this.subscribeCenter.has(type)) {
             const fnList = this.subscribeCenter.get(type);
 
             fnList.forEach(fn => {
@@ -41,13 +33,13 @@ class Subscribe {
         }
     }
     // 取消订阅
-    unsubscribe(type,fn) {
-        if(this.subscribeCenter.has(type)) {
+    unsubscribe(type, fn) {
+        if (this.subscribeCenter.has(type)) {
             const fnList = this.subscribeCenter.get(type);
-            if(fnList.length) {
-                for(let i = 0; i < fnList.length; i++) {
-                    if(fnList[i] === fn) {
-                        fnList.splice(i,1);
+            if (fnList.length) {
+                for (let i = 0; i < fnList.length; i++) {
+                    if (fnList[i] === fn) {
+                        fnList.splice(i, 1);
                         break;
                     }
                 }
@@ -56,18 +48,18 @@ class Subscribe {
     }
     // 取消全部订阅
     unsubscribeAll(type) {
-        if(this.subscribeCenter.has(type)) {
+        if (this.subscribeCenter.has(type)) {
             delete this.subscribeCenter.get(type);
         }
     }
 }
 
 let subscribe = new Subscribe();
-subscribe.on('game', function(event) {
+subscribe.on('game', function (event) {
     console.log(`game is ${event}`);
 })
 
-subscribe.on('learn', function(event) {
+subscribe.on('learn', function (event) {
     console.log(`learn is ${event}`);
 });
 // 发布任务
